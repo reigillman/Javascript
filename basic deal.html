@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+<title>Template</title>
+</head>
+<body>
+
+<p align="center"> 
+  <canvas id="mycanvas">
+	</canvas>
+</p>
+</body>
+
+<script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+<script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+
+		 function shuffle(array) {
+  			for (let i = array.length - 1; i > 0; i--) {
+				let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+
+				[array[i], array[j]] = [array[j], array[i]];
+  			}
+		 }
+ 
+var reiArray= ["tap", "mouth", "Loch Ness", "log", "pipe", "novel", "mail", "undertaker", 
+"night", "string", "buffalo", "deck", "piano", "spot", "platypus", "stick", "game", 
+"washer", "check", "queen", "bond", "pan", "diamond", "whale", "ball", "doctor", "foot", 
+"New York", "watch", "lead", "bell", "lemon", "cloak", "board", "buck", "agent", "lock", 
+"brush", "teacher", "pumpkin", "scorpion", "Canada", "comic", "mammoth", "Czech", "back", 
+"octopus", "whip", "court", "spring", "spike", "scientist", "van", "vet", "dinosaur", "bill",
+ "crown", "Himalayas"];
+
+var hannahArray= ["satellite", "lawyer", "paste", "missile", "germany", "fork", "ivory", "america",
+"bark", "thief", "india", "round", "chair", "water", "sound", "paper", "bat", "mass", "play", 
+ "tooth", "cast", "gas", "hood", "heart", "cotton", "fish", "slip", "tablet", "horseshoe", "honey", 
+ "hole", "beat", "scale", "fall", "hawk", "battery", "ruler", "bomb", "plastic", "dwarf", "fence", 
+"capital", "wave", "car", "day", "millionaire"];
+ 
+var garettArray= ["film","button","robot","embassy","row","pistol","Africa","scuba diver",
+"snow","trunk","time", "princess", "train", "field","telescope","cycle","compound","slug",
+"marble","staff","bear","glass","card","horn","point","tube","knight","pie","organ","jam",
+"post","ray","ghost","boot","press","spine","pilot","casino","key","alien","kangaroo","strike",
+"centaur","shadow"];
+
+var andrewArray=["ice", "tag", "angel", "spider", "pyramid", "opera", "maple", "aztec", "pupil", 
+"plot", "chest", "yard", "berlin", "face", "club", "sink", "life", "lap", "bar", "file", "apple",
+"pole", "pool", "star", "cross", "seal", "mercury", "roulette", "limousine", "australia", "arm", 
+"bermuda", "leprechaun", "nurse", "straw", "switch", "pheonix", "drop", "spell", "grass", "palm", 
+"moscow", "mug", "concert"];
+
+var kevonArray= ["Crash","Tail","Vacuum","Atlantis","Witch","Ketchup","Poision","Tower","Dog",
+"Conductor","Horse","Pirate","Shoe","Mole","Luck","Amazon","Cold","Cricket","Oil","Superhero",
+"Robin","Bridge","Net","Moon","Bow","Degree","Contract","March","Rose","Change","Kid","Wind",
+"Calf","Air","Force","Track","Hospital","Saturn","Trip","Crane","Suit","Chocolate","Sock",
+"Nut","Stream","Glove","Pass","Green","Unicorn","Spy","Jack","Copper","Olive","Grace","Pants","Wall"];
+
+var catArray= ["ALPS","WORM","GOLD","TICK","DISEASE","PORT","SOLDIER","BERRY","LINK","DANCE",
+"NAIL","GIANT","CHARGE","BEACH","SERVER","SCHOOL","HOOK","SPACE","HOLLYWOOD","WELL","COOK",
+"REVOLUTION","BAND","FIRE","FRANCE","BLOCK","FIGHTER","WAKE","PLATE","LINE","MODEL","TOKYO",
+"POLICE","LION","SHARK","JUPITER","BOOM","BANK","AMBULANCE","DRESS","HELICOPTER","SNOWMAN",
+"MICROSCOPE","JET","LASER","SKYSCRAPER","PIN","WASHINGTON","NOTE","GROUND","LIGHT","BELT","CHINA","BOLT"];
+
+var sydneyArray= ["olympus","ninja","part","bugle","code","kiwi","bed","circle","temple",
+"orange","beijing","racket","square","greece","parachute","hotel","box","mount","cat","shot",
+"mine","turkey","pitch","king","tie","table","match","iron","stadium","dragon","cell","cover",
+"triangle","cap","mexico","eye","ice cream","rabbit","death","stock","thumb","antarctica","europe",
+"soul","head","litter","knife","church","torch","state","ship","dice","plane","rome"];
+
+var demeishaArray= ["root", "bug", "hand", "genius", "flute", "england", "sub", "center", 
+"park", "screen", "fly", "duck", "date", "shop", "mouse", "theater", "rock", "draft", "lab",
+"web", "bottle", "engine", "penguin", "mint", "swing", "eagle", "carrot", "smuggler", "pound", 
+"chick", "figure", "fair", "pit", "ring", "drill", "needle", "war", "egypt", "london", "ham", 
+"cliff", "fan", "forest", "shakespeare"];
+ 
+var fullArray= [];
+fullArray.push(...reiArray,...hannahArray,...garettArray,...andrewArray,...kevonArray,...catArray, ...sydneyArray,...demeishaArray);
+ 
+ var cards=["one","two","three","four","five","six","seven","eight","nine","ten"];
+ var p=0;
+ 
+background(111,193,233); 
+loops();
+function loops(){
+	if((mouseX >= 305 && mouseY >= 340) && (mouseX <= 370 && mouseY <= 380)){
+		for(var i=20; i<340; i+=130){
+			make_blank(i);
+		}
+	}
+}
+
+var canvas= document.getElementById('mycanvas'),
+context= canvas.getContext('2d');
+
+make_base();
+	function make_base(){
+	base_image = new Image();
+	base_image.src = 'dealbutton.png';
+	base_image.onload = function(){
+		context.drawImage(base_image, 280, 330);
+		fill(253,245,245);
+		textSize(20);
+		text("Deal", 316, 361);
+  }
+}
+document.getElementById("mycanvas").addEventListener("click",loops);
+
+function make_blank(x){
+var x;
+  blank_image= new Image();
+  blank_image.src= 'blank.png';
+  blank_image.onload= function(){
+    context.drawImage(blank_image, x, 40);
+	context.drawImage(blank_image, x, 190);
+	
+	fill(203, 55, 110);
+		p=p+1;
+		shuffle(cards);
+			textSize(20);
+			text(cards[p], x+22, 105);
+			shuffle(cards);
+			text(cards[p], x+22, 265);
+		if(p>5){
+			p=0;
+			}
+		}
+	}
+
+fill(253,245,245);
+textSize(20);
+text("Deal", 316, 361);
+
+ 
+    }};
+
+    var canvas = document.getElementById("mycanvas"); 
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+</html>
