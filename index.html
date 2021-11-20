@@ -1,0 +1,342 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codenames via Zoom</title>
+<style>
+#wrapper {
+    max-width: 1160px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    text-align: left;
+}
+#interface {
+    color: black;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+#branding {
+    color: red;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 30px;
+    text-align: center;
+}
+#credits {
+    clear: left;
+    //text-align: center;
+    //position: absolute;
+    //bottom: -1100px;
+    //width: 50%;
+}
+body {
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+//background-image: linear-gradient(90deg, red, yellow);
+}
+.countDownBox {
+    background-color: AntiqueWhite;
+//padding: 50px;
+//margin: 10px;
+//width: 50px;
+//height: 50px;
+//float: right;
+    font-size: 250%;
+//text-align: center;
+//font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, 'sans-serif'
+}
+.box {
+    background-color: lightgray;
+    color: #111;
+    text-align: center;
+    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+    font-size: x-large;
+    font-weight: bolder;
+    border-radius: 15px;
+    padding-top: 37px;
+    text-transform: uppercase;
+}
+.gameboard {
+    float: left;
+    background-color: white;
+    padding: 10px;
+    border: inset 18px;
+    border-color: darkgray;
+    width: 865px;
+    display: grid;
+    grid-gap: 4px;
+    grid-template-columns: repeat(5, 170px);
+    grid-template-rows: 100px 100px 10px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(5, 170px);
+    grid-template-rows: repeat(5, 100px);
+}
+.key {
+    background-color: black;
+    padding: 1px;
+    border: inset 10px;
+    border-color: darkgray;
+    width: 380px;
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(5, 75x);
+    grid-template-rows: 75px 75px 75px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(5, 75px);
+    grid-template-rows: repeat(5, 75px);
+	margin-top: 250px;
+}
+.key .blue {
+    background-color: skyblue;
+    border: inset 2px;
+    border-color: white;
+}
+.key .red {
+    background-color: red;
+    border: inset 2px;
+    border-color: white;
+}
+.key .white {
+    background-color: whitesmoke;
+    border: inset 2px;
+    border-color: white;
+}
+.key .black {
+    background-color: black;
+    border: inset 3px;
+    border-color: white;
+}
+.blue-first {
+    border-color: skyblue;
+}
+.red-first {
+    border-color: red;
+}
+	.remove-padding{
+		padding-top: 0px;
+	}
+	h4{
+		padding-top: 200px;
+		margin-bottom: -12px;
+	}
+	#score{
+		text-align: left;
+	}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="branding">
+    <h1>Codenames</h1>
+  </div>
+  <div id="grid-1" class="gameboard">
+    <div id="c0" class="box red"></div>
+    <div id="c1" class="box blue"></div>
+    <div id="c2" class="box black"></div>
+    <div id="c3" class="box white"></div>
+    <div id="c4" class="box blue"></div>
+    <div id="c5" class="box blue"></div>
+    <div id="c6" class="box white"></div>
+    <div id="c7" class="box blue"></div>
+    <div id="c8" class="box red"></div>
+    <div id="c9" class="box red"></div>
+    <div id="c10" class="box red"></div>
+    <div id="c11" class="box blue"></div>
+    <div id="c12" class="box red"></div>
+    <div id="c13" class="box white"></div>
+    <div id="c14" class="box white"></div>
+    <div id="c15" class="box white"></div>
+    <div id="c16" class="box blue"></div>
+    <div id="c17" class="box white"></div>
+    <div id="c18" class="box blue"></div>
+    <div id="c19" class="box red"></div>
+    <div id="c20" class="box red"></div>
+    <div id="c21" class="box white"></div>
+    <div id="c22" class="box blue"></div>
+    <div id="c23" class="box red"></div>
+    <div id="c24" class="box blue"></div>
+  </div>
+  <div id="interface">
+    <div class="countDownBox"> <span id="letsCount">90</span><br>
+      <input type="button" id="start-button" value="Start A Timer">
+      <input type="button" id="stop-button" value="Reset Timer">
+    </div>
+    <input type="button" name="button" id="deal" value="Begin the round">
+    <div id="score">
+  <h3>Remaining Agents</h3>
+      <h3>Red <span id="redScore"></span></h3>
+      <h3>Blue <span id="blueScore"></span></h3>
+    </div>
+  </div>
+  <div id="credits">
+    <h4>This was a collaborative project designed and coded by:</h4>
+    <p>Sydney Campbell, Rei Gillman, Thomas Hancock, Kevon Hickman, Hannah Miller, Garett Noll, Andrew Price, Demeisha Ransom, and Catherine Schultz for Muskingum University's Principles of Interactive Design class (DMD 400) in April 2021. Coding assistance provided by Khan Academy, W3Schools, and Dr. Tom German.</p>
+  </div>
+  <div id="grid-2" class="key">
+    <div id="k0" class="box red"></div>
+    <div id="k1" class="box blue"></div>
+    <div id="k2" class="box black"></div>
+    <div id="k3" class="box white"></div>
+    <div id="k4" class="box blue"></div>
+    <div id="k5" class="box blue"></div>
+    <div id="k6" class="box white"></div>
+    <div id="k7" class="box blue"></div>
+    <div id="k8" class="box red"></div>
+    <div id="k9" class="box red"></div>
+    <div id="k10" class="box red"></div>
+    <div id="k11" class="box blue"></div>
+    <div id="k12" class="box red"></div>
+    <div id="k13" class="box white"></div>
+    <div id="k14" class="box white"></div>
+    <div id="k15" class="box white"></div>
+    <div id="k16" class="box blue"></div>
+    <div id="k17" class="box white"></div>
+    <div id="k18" class="box blue"></div>
+    <div id="k19" class="box red"></div>
+    <div id="k20" class="box red"></div>
+    <div id="k21" class="box white"></div>
+    <div id="k22" class="box blue"></div>
+    <div id="k23" class="box red"></div>
+    <div id="k24" class="box blue"></div>
+  </div>
+  <script>
+var redCount= document.getElementById("redScore");
+var blueCount= document.getElementById("blueScore");
+	  var bluePoints;
+	  var redPoints;
+var key;
+var doubleAgent;
+var codenames=['tap', 'mouth', 'Loch Ness', 'log', 'pipe', 'novel', 'mail', 'undertaker', 'night', 'string', 'buffalo', 'deck', 'piano', 'spot', 'platypus', 'stick', 'game', 'washer', 'check', 'queen', 'bond', 'pan', 'diamond', 'whale', 'ball', 'doctor', 'foot', 'New York', 'watch', 'lead', 'bell', 'lemon', 'cloak', 'board','buck', 'agent', 'lock', 'brush', 'teacher', 'pumpkin', 'scorpion', 'Canada', 'comic', 'mammoth', 'Czech', 'back', 'octopus', 'whip', 'court', 'spring','spike', 'scientist', 'van', 'vet', 'dinosaur', 'bill', 'crown', 'Himalayas', 'satellite', 'lawyer', 'paste', 'missile', 'germany', 'fork', 'ivory', 'america', 'bark', 'thief', 'india', 'round', 'chair', 'water', 'sound', 'paper', 'bat', 'mass', 'play', 'tooth', 'cast', 'gas', 'hood', 'heart', 'cotton', 'fish', 'slip', 'tablet', 'horseshoe', 'honey', 'hole', 'beat', 'scale', 'fall', 'hawk', 'battery', 'ruler', 'bomb', 'plastic', 'dwarf', 'fence', 'capital', 'wave', 'car', 'day', 'millionaire', 'film','button','robot','embassy','row','pistol','Africa','scuba diver','snow','trunk','time', 'princess', 'train', 'field','telescope','cycle','compound','slug','marble','staff','bear','glass','card','horn','point','tube','knight','pie','organ','jam','post','ray','ghost','boot','press','spine','pilot','casino','key','alien','kangaroo','strike','centaur','shadow', 'ice', 'tag', 'angel', 'spider', 'pyramid', 'opera', 'maple', 'aztec', 'pupil', 'plot', 'chest', 'yard', 'berlin', 'face', 'club', 'sink', 'life', 'lap', 'bar', 'file', 'apple', 'pole', 'pool', 'star', 'cross', 'seal', 'mercury', 'roulette', 'limousine', 'australia', 'arm', 'bermuda', 'leprechaun', 'nurse', 'straw', 'switch', 'phoenix', 'drop', 'spell', 'grass', 'palm', 'moscow', 'mug', 'concert', 'Crash','Tail','Vacuum','Atlantis','Witch','Ketchup','Poison','Tower','Dog','Conductor','Horse','Pirate','Shoe','Mole','Luck','Amazon','Cold','Cricket','Oil','Superhero','Robin','Bridge','Net','Moon','Bow','Degree','Contract','March','Rose','Change','Kid','Wind','Calf','Air','Force','Track','Hospital','Saturn','Trip','Crane','Suit','Chocolate','Sock','Nut','Stream','Glove','Pass','Green','Unicorn','Spy','Jack','Copper','Olive','Grace','Pants','Wall', 'ALPS','WORM','GOLD','TICK','DISEASE','PORT','SOLDIER','BERRY','LINK','DANCE','NAIL','GIANT','CHARGE','BEACH','SERVER','SCHOOL','HOOK','SPACE','HOLLYWOOD','WELL','COOK','REVOLUTION','BAND','FIRE','FRANCE','BLOCK','FIGHTER','WAKE','PLATE','LINE','MODEL','TOKYO','POLICE','LION','SHARK','JUPITER','BOOM','BANK','AMBULANCE','DRESS','HELICOPTER','SNOWMAN','MICROSCOPE','JET','LASER','SKYSCRAPER','PIN','WASHINGTON','NOTE','GROUND','LIGHT','BELT','CHINA','BOLT', 'olympus','ninja','part','bugle','code','kiwi','bed','circle','temple','orange','beijing','racket','square','greece','parachute','hotel','box','mount','cat','shot','mine','turkey','pitch','king','tie','table','match','iron','stadium','dragon','cell','cover','triangle','cap','mexico','eye','ice cream','rabbit','death','stock','thumb','antarctica','europe','soul','head','litter','knife','church','torch','state','ship','dice','plane','rome', 'root', 'bug', 'hand', 'genius', 'flute', 'england', 'sub', 'center', 'park', 'screen', 'fly', 'duck', 'date', 'shop', 'mouse', 'theater', 'rock', 'draft', 'lab', 'web', 'bottle', 'engine', 'penguin', 'mint', 'swing', 'eagle', 'carrot', 'smuggler', 'pound', 'chick', 'figure', 'fair', 'pit', 'ring', 'drill', 'needle', 'war', 'egypt', 'london', 'ham', 'cliff', 'fan', 'forest', 'shakespeare'];
+	
+function shuffle(array) {
+  			for (var i= array.length- 1; i> 0; i--) {
+				var j= Math.floor(Math.random()*(i + 1));
+				[array[i],array[j]]= [array[j],array[i]];
+  			}
+ }
+	
+var dealButton = document.getElementById("deal");
+  
+var dealButtonClick = function() {
+    shuffle(codenames);
+	agent();
+	dealCards();
+    };
+    
+dealButton.addEventListener("click", dealButtonClick);
+	  
+var topGrid = document.getElementById("grid-1");
+var bottomGrid = document.getElementById("grid-2");
+	  
+var redGoesFirst=function(){
+	topGrid.classList.remove("red-first", "blue-first");
+	bottomGrid.classList.remove("red-first", "blue-first");
+	topGrid.classList.add("red-first");
+	bottomGrid.classList.add("red-first");
+}
+var blueGoesFirst=function(){
+	topGrid.classList.remove("red-first", "blue-first");
+	bottomGrid.classList.remove("red-first", "blue-first");
+	topGrid.classList.add("blue-first");
+	bottomGrid.classList.add("blue-first");
+}
+	 var agent = function () {
+	var randNum= Math.floor(Math.random()*2);
+	if (randNum === 0) {
+		doubleAgent= "red";
+		redGoesFirst();
+		redPoints=9;
+		bluePoints=8;
+		redCount.innerHTML = redPoints;
+		blueCount.innerHTML = bluePoints;
+	}
+	else {
+		doubleAgent= "blue";
+		blueGoesFirst();
+		redPoints=8;
+		bluePoints=9;
+		redCount.innerHTML = redPoints;
+		blueCount.innerHTML = bluePoints;
+	}
+	key = ["red", "red", "red", "red", "red", "red", "red", "red", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "white", "white", "white", "white", "white", "white", "white", "black", doubleAgent];
+	shuffle(key);
+	
+}
+
+var dealCards=function(){
+	for(var i=0; i<25; i++){
+	var cardwords = document.getElementById("c"+i);
+	var keycolors = document.getElementById("k"+i);
+			cardwords.classList.remove("red", "blue", "white", "black", "remove-padding");
+			cardwords.innerHTML = codenames[i];	
+			cardwords.classList.add(key[i]);
+			cardwords.addEventListener("click", reveal);
+			keycolors.classList.remove("red", "blue", "white", "black");
+			keycolors.classList.add(key[i]);
+	}
+}
+var reveal=function(){
+	if(this.classList[1] == "red"){
+		var randNum= Math.floor(Math.random()*3);
+		this.classList.add("remove-padding");
+		this.innerHTML = "<img src=\"images/r"+randNum+".jpg\"/>";
+		this.removeEventListener("click", reveal);
+		redPoints--;
+		redCount.innerHTML = redPoints;
+		
+	}
+	else if(this.classList[1] == "blue"){
+		var randNum= Math.floor(Math.random()*3);	
+		this.classList.add("remove-padding");
+		this.innerHTML = "<img src=\"images/b"+randNum+".jpg\"/>";
+		this.removeEventListener("click", reveal);
+		bluePoints--;
+		blueCount.innerHTML = bluePoints;
+	}
+	else if(this.classList[1] == "white"){
+		var randNum= Math.floor(Math.random()*3);
+		this.classList.add("remove-padding");
+		this.innerHTML = "<img src=\"images/w"+randNum+".jpg\"/>";
+		this.removeEventListener("click", reveal);
+	}
+	else if(this.classList[1] == "black"){
+		this.classList.add("remove-padding");
+		this.innerHTML = "<img src=\"images/a.jpg\"/>";
+		this.removeEventListener("click", reveal);
+	}
+}
+
+var countDown;
+var seconds = document.getElementById("letsCount");
+var timer;
+var myClock = function() {
+    countDown=function(){
+        var currentTime = parseFloat(seconds.textContent);
+       if(currentTime>0){ seconds.textContent = currentTime - 1; } 
+		  else{window.clearInterval(timer);}
+    };
+	window.clearInterval(timer);
+    timer = window.setInterval(countDown, 1000);
+};
+            
+           
+var stopCountDown = function() {
+    window.clearInterval(timer);
+    seconds.textContent = 90;
+};
+    
+var stopButton = document.getElementById("stop-button");
+var startButton = document.getElementById("start-button");
+stopButton.addEventListener("click", stopCountDown);
+startButton.addEventListener("click", myClock);
+
+</script> 
+</div>
+</body>
+</html>
