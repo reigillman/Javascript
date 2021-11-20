@@ -1,0 +1,40 @@
+.box {
+    background-color: lightgray;
+    color: #fff;
+    border-radius: 15px;
+    padding: 2px;
+}
+.wrapper {
+    background-color: black;
+    padding: 10px;
+    border: inset 18px;
+    border-color: skyblue;
+    width: 514px;
+    display: grid;
+    grid-gap: 4px;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: 100px 100px 10px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(5, 100px);
+}
+.blue {
+    background-color: skyblue;
+    border: inset 2px;
+    border-color: white;
+}
+.red {
+    background-color: red;
+    border: inset 2px;
+    border-color: white;
+}
+.white {
+    background-color: whitesmoke;
+    border: inset 2px;
+    border-color: white;
+}
+.black {
+    background-color: black;
+    border: inset 3px;
+    border-color: white;
+}
